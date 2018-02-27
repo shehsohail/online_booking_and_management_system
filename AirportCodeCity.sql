@@ -1,4 +1,4 @@
-'CREATE TABLE `AirportCodeCity` (
+CREATE TABLE `AirportCodeCity` (
   `ORIGIN` text,
   `ORIGIN_CITY_NAME` text,
   `ORIGIN_AIRPORT_SEQ_ID` int(11) DEFAULT NULL
