@@ -1,6 +1,7 @@
 CREATE TABLE `AirportData` (
-  `Airport_Code` text,
+  `Airport_Code` varchar(3) NOT NULL,
   `City` text,
   `State` text,
-  `Description` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1'
+  `Airport_Name` text,
+  PRIMARY KEY (`Airport_Code`)
+)
