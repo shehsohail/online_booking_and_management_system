@@ -1,4 +1,4 @@
-'CREATE TABLE `AirportData` (
+CREATE TABLE `AirportData` (
   `Airport_Code` text,
   `City` text,
   `State` text,
