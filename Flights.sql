@@ -1,4 +1,4 @@
-'CREATE TABLE `Flights` (
+CREATE TABLE `Flights` (
   `Flight_Date` date NOT NULL,
   `Airline_ID` int(11) DEFAULT NULL,
   `Flight_Num` int(11) NOT NULL,
