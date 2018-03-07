@@ -1,0 +1,36 @@
+body{
+    font-family: sans-serif;
+    background: url(images/airplane.jpg) no-repeat center center fixed;
+}
+
+.button {
+    background-color:#EEE8AA
+    padding:5px;
+    margin:10px;
+    position:relative;
+    left:30px;
+}
+
+.content {
+    position:relative;
+    font-size:15px;
+    left:420px;
+    top:30px; 
+}
+
+.text_box{
+    width:250px;
+    padding:7px;
+    border:1px solid silver;
+    margin:10px 2px 5px;
+}
+
+.box{
+    background:rgba(0,0,0,0.6);
+	color:#fff;
+    height:550px;
+    border:1px solid silver;
+    margin:60px;
+    padding-left:10px;
+    
+}
