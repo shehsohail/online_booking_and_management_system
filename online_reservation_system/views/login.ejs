@@ -4,21 +4,34 @@
         <meta charset="UTF-8">
         <title>
             Sign In
-        </title>
-        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        </title>  
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
-        <p>Please enter your username</p>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Flights</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </nav>
         <form>
-            <input type="text" name="username"/>
-
-
-
+            <div class="login_content">
+                <label for="Username">Username:</label><br>
+                    <input type="text" class="text_box" id="Username" placeholder="Username" name="Username"/>
+                <br>
+                <label for="Password">Password:</label><br>
+                    <input type="password" class="text_box" id="Password" placeholder="Password" name="Password"/>
+                <br>
+                <button type="submit" class="login_button">Login</button> 
+                Don't have an account?<br>
+                <button type="submit" class="signup_button">Sign Up</button>
+                <br>
+            </div>
         </form>
-
-
     </body>
-
+    
 
 
 </html>
