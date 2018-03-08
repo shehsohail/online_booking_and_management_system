@@ -4,10 +4,18 @@
         <meta charset="UTF-8">
         <title>
             Create An Account
-        </title>
-        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        </title> 
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Flights</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </nav>        
         <form class="box">
             <h1>Sign Up Today!</h1>
              <div class="content">
@@ -15,7 +23,7 @@
             <label for="FirstName">First Name:</label><br>
                 <input type="text" id="FirstName" class="text_box" placeholder="Enter First Name" name="First_Name"/>
             <br>
-            <label for="LastName">Last Name:</label><br>
+            <label for="LastName">Last Name:</label><br>  
                 <input type="text" id="LastName" class="text_box" placeholder="Enter Last Name"name="Last_Name"/>
             <br>
             <label for="Email_Address">Email Address:</label><br>
@@ -24,17 +32,15 @@
             <label for="Password">Password:</label><br>
                 <input type="password" id="Password" class="text_box" placeholder="Enter Password" name="Password"/>
             <br>
-            <label for="Confirm_Password">Confirm Password:</label><br>
+            <label for="Confirm_Password">Confirm Password:</label><br> 
                 <input type="password" id="Confirm_Password" class="text_box" placeholder="Re-Enter Password" name="Password"/>
             <br>
-            <input type="submit" class="button" value="Create Account"/>
-            <input type="submit" class="button" value="Cancel"/>
-
-
+                 <button type="submit" class="create_account_button">Create Account</button>
+                 <button type="submit" class="cancel_button">Cancel</button>
             </div>
         </form>
     </body>
-
+    
 
 
 </html>
