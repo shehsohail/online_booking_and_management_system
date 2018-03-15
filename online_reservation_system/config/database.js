@@ -1,7 +1,7 @@
 // config/database.js
 module.exports = {
     connection: {
-        host: 'onlinereservationsystem.ca7z4fcwtf2l.us-east-2.rds.amazonaws.com',
+        host: 'finalproject336.ca7z4fcwtf2l.us-east-2.rds.amazonaws.com',
         user: 'webadmin',
         password: 'finalproject336',
     },
