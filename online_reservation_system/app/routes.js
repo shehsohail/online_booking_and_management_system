@@ -6,6 +6,11 @@ module.exports = (app, passport) => {
         res.render('index.ejs'); // load the index.ejs file
     });
 
+    // Search
+    app.get('/search', (req, res) => {
+        // render the page and pass in any flash data if it exists
+        res.render('search.ejs');
+    });
     // Login
     app.get('/login', (req, res) => {
 
