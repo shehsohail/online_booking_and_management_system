@@ -11,6 +11,22 @@ module.exports = (app, passport) => {
         // render the page and pass in any flash data if it exists
         res.render('search.ejs');
     });
+
+    app.post('/search', (req, res) => {
+      console.log("search posted");
+      var flightsArray = [];
+      console.log(req.body);
+      var flightRequest = {
+        Origin: req.body.Origin,
+        Destination: req.body.Destination,
+        DepartDate: req.body.date
+      };
+      console.log(flightRequest.Origin);
+      console.log(flightRequest.Destination);
+      console.log(flightRequest.DepartDate);
+      // const connection = mysql.createConnection(dbconfig.connection);
+      // connection.query()
+    })
     // Login
     app.get('/login', (req, res) => {
 
@@ -70,5 +86,5 @@ function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) return next();
 
     // if they aren't redirect them to the home page
-    res.redirect('/signup');
+    res.redirect('/login');
 }
