@@ -1,4 +1,8 @@
 // app/routes.js
+
+const dbconfig = require('../config/database');
+const mysql = require('mysql');
+
 module.exports = (app, passport) => {
 
     // Homepage
@@ -12,20 +16,45 @@ module.exports = (app, passport) => {
         res.render('search.ejs');
     });
 
+    app.get('/order', (req, res) => {
+        // render the page and pass in any flash data if it exists
+        if (typeof app.locals.flightResult == 'undefined') {
+          res.redirect('/search');
+        } else {
+          res.render('order.ejs');
+        }
+    });
+
+    app.post('/order', (req, res) => {
+
+      console.log(req.body.optradio);
+      if (typeof app.locals.flightResult == 'undefined') { res.redirect('/search');}
+      console.log(app.locals.flightResult[req.body.optradio]);
+      res.render('order.ejs', {flight: app.locals.flightResult[req.body.optradio]});
+    });
+
     app.post('/search', (req, res) => {
-      console.log("search posted");
-      var flightsArray = [];
+      var flightsArray = {};
       console.log(req.body);
       var flightRequest = {
         Origin: req.body.Origin,
         Destination: req.body.Destination,
         DepartDate: req.body.date
       };
-      console.log(flightRequest.Origin);
-      console.log(flightRequest.Destination);
-      console.log(flightRequest.DepartDate);
-      // const connection = mysql.createConnection(dbconfig.connection);
-      // connection.query()
+      const db = mysql.createConnection(dbconfig.connection);
+      db.query(`USE ${dbconfig.database};`);
+      var q = 'SELECT * FROM Flights WHERE Origin = ? AND Destination = ? AND FlightDate = ? ORDER BY DepartTime'
+      db.query(q, [flightRequest.Origin, flightRequest.Destination, flightRequest.DepartDate],
+        function(error, rows, fields) {
+          if (error) return console.log(error);
+          if (!rows.length) {
+            console.log("No flights returned.")
+          } else {
+            app.locals.flightResult = rows;
+            res.render('search.ejs', { flights: rows });
+        }
+      });
+      db.close;
     })
     // Login
     app.get('/login', (req, res) => {
