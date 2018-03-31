@@ -6,14 +6,13 @@ const LocalStrategy = require('passport-local').Strategy;
 // load up the user model
 const mysql = require('mysql');
 const bcrypt = require('bcrypt-nodejs');
-const dbconfig = require('./database');
+const dbconfig = require('../config/database');
 var shortid = require('shortid');
 const connection = mysql.createConnection(dbconfig.connection);
 
 connection.query(`USE ${dbconfig.database}`);
 // expose this function to our app using module.exports
 module.exports = (passport) => {
-  console.log("passport reached");
     // =========================================================================
     // passport session setup ==================================================
     // =========================================================================
