@@ -22,7 +22,6 @@ module.exports = (app) => {
         if (!rows.length) {
           console.log("No flights returned.")
         } else {
-          console.log(rows);
           res.render('index.ejs', { upcomingFlights: rows });
       }
     });

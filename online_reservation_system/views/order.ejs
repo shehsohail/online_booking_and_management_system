@@ -28,37 +28,41 @@
 			</div>
 		</nav>
 	</header>
+  <% if (typeof flight != 'undefined') { %>
+    <div class="container" style="background-color: #f2f2f3">
+  		<h3 style="text-align: center">Selected Flight</h3>
 
-  <div class="container" style="background-color: #f2f2f3">
-		<h3 style="text-align: center">Selected Flight:</h3>
+      <table class="table table-responsive table-hover" id="table">
+    		<thead>
+    			<tr>
+            <th>Flight</th>
+  					<th>Date</th>
+  					<th>Origin</th>
+  					<th>Departure Time</th>
+  					<th>Destination</th>
+  					<th>Arrival Time</th>
+            <th># of Passengers</th>
+            <th>Class</th>
+    			</tr>
+    		</thead>
+    		<tbody>
+    				<tr>
+    					<td><%= flight.AirlineCode + ' ' + flight.FlightNum %></td>
+    					<td><%= flight.FlightDate %></td>
+    					<td><%= flight.Origin %></td>
+    					<td><%= flight.DepartTime %></td>
+    					<td><%= flight.Destination %></td>
+    					<td><%= flight.ArrivalTime %></td>
+              <td><%= passengers %></td>
+              <td><%= classSelected %></td>
+    				</tr>
+    		</tbody>
+    	</table>
+    </div>
+  <% } %>
 
-    <table class="table table-responsive table-hover" id="table">
-  		<thead>
-  			<tr>
-  				<th>AirlineCode</th>
-  				<th>FlightNum</th>
-  				<th>FlightDate</th>
-  				<th>Origin</th>
-  				<th>DepartTime</th>
-  				<th>Destination</th>
-  				<th>ArrivalTime</th>
-  			</tr>
-  		</thead>
-  		<tbody>
-  			<% if (typeof flight != 'undefined') { %>
-  				<tr>
-  					<td><%= flight.AirlineCode %></td>
-  					<td><%= flight.FlightNum %></td>
-  					<td><%= flight.FlightDate %></td>
-  					<td><%= flight.Origin %></td>
-  					<td><%= flight.DepartTime %></td>
-  					<td><%= flight.Destination %></td>
-  					<td><%= flight.ArrivalTime %></td>
-  				</tr>
-  			<% } %>
-  		</tbody>
-  	</table>
-  </div>
+  
+
 </body>
 
 </html>

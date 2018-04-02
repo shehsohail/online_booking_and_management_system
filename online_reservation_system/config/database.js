@@ -7,5 +7,5 @@ module.exports = {
         dateStrings:true
     },
     database: 'online_booking_and_management_system',
-    users_table: 'Customers',
+    users_table: 'Customers'
 };

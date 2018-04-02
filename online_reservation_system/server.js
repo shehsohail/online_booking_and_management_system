@@ -39,10 +39,13 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 app.use(express.static('public'));
 
+require('./app/airportData.js')(app);
 
 // routes ======================================================================
-require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+require('./app/passportRoutes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 require('./app/index.js')(app);
+require('./app/search.js')(app);
+require('./app/order.js')(app);
 // launch ======================================================================
 app.listen(port);
 console.log(`Server on port ${port}`);
