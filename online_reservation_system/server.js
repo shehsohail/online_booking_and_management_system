@@ -42,7 +42,7 @@ app.use(express.static('public'));
 
 // routes ======================================================================
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
-
+require('./app/index.js')(app);
 // launch ======================================================================
 app.listen(port);
 console.log(`Server on port ${port}`);
