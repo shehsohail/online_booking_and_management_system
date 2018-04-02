@@ -30,7 +30,7 @@
 	<div class="main">
 		<h2>Map of Airplane</h2>
 			<div id="seat-map">
-				<div class="front">FRONT</div>					
+				<div class="front">FRONT</div>
 			</div>
 			<div class="booking-details">
 				<ul class="book-left">
@@ -48,7 +48,7 @@
 				</ul>
 				<div class="clear"></div>
 				<ul id="selected-seats" class="scrollbar scrollbar1"></ul>
-				<button class="checkout-button">Book Now</button>	
+				<button class="checkout-button">Book Now</button>
 				<div id="legend"></div>
 			</div>
 			<div style="clear:both"></div>
@@ -56,7 +56,6 @@
 
 			<script type="text/javascript">
 				var price = 100; //price
-                var firstSeatLabel=1;
 				$(document).ready(function() {
 					var $cart = $('#selected-seats'), //Sitting Area
 					$counter = $('#counter'), //Votes
@@ -67,13 +66,12 @@
                             'ee_ee_ee',
                             'ee_ee_ee',
                             'ee_ee_ee',
-                            'ee_ee_ee',
-                            'ee_ee_ee'            
+                            'ee_ee_ee'
 						],
 						naming : {
 							top : false,
 							getLabel : function (character, row, column) {
-								return firstSeatLabel++;
+								return column;
 							}
 						},
 						legend : { //Definition legend
@@ -82,7 +80,7 @@
 								[ 'a', 'available',   'Available' ],
 								[ 'a', 'unavailable', 'Sold'],
 								[ 'a', 'selected', 'Selected']
-							]					
+							]
 						},
 						click: function () { //Click event
 							if (this.status() == 'available') { //optional seat
@@ -93,13 +91,13 @@
 
 								$counter.text(sc.find('selected').length+1);
 								$total.text(recalculateTotal(sc)+price);
-											
+
 								return 'selected';
 							} else if (this.status() == 'selected') { //Checked
 									//Update Number
 									$counter.text(sc.find('selected').length-1);
 									//update totalnum
-									$total.text(recalculateTotal(sc)-price);							
+									$total.text(recalculateTotal(sc)-price);
 									//Delete reservation
 									$('#cart-item-'+this.settings.id).remove();
 									//optional
@@ -113,7 +111,7 @@
 					});
 					//sold seat
 					sc.get(['1_2', '4_4','4_5','6_6','6_7','8_5','8_6','8_7','8_8', '10_1', '10_2']).status('unavailable');
-						
+
 				});
 				//sum total money
 				function recalculateTotal(sc) {
@@ -121,7 +119,7 @@
 					sc.find('selected').each(function () {
 						total += price;
 					});
-							
+
 					return total;
 				}
 			</script>
