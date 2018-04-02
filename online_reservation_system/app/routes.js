@@ -5,10 +5,7 @@ const mysql = require('mysql');
 
 module.exports = (app, passport) => {
 
-    // Homepage
-    app.get('/', (req, res) => {
-        res.render('index.ejs'); // load the index.ejs file
-    });
+
 
     // Search
     app.get('/search', (req, res) => {
@@ -34,8 +31,6 @@ module.exports = (app, passport) => {
     });
 
     app.post('/search', (req, res) => {
-      var flightsArray = {};
-      console.log(req.body);
       var flightRequest = {
         Origin: req.body.Origin,
         Destination: req.body.Destination,
@@ -104,7 +99,7 @@ module.exports = (app, passport) => {
         // render the page and pass in any flash data if it exists
         res.render('seating.ejs');
     });
-    
+
     // =====================================
     // LOGOUT ==============================
     // =====================================
@@ -114,7 +109,7 @@ module.exports = (app, passport) => {
     });
 };
 
-// route middleware to make sure
+// route middleware to make sure user is logged in
 function isLoggedIn(req, res, next) {
 
     // if user is authenticated in the session, carry on

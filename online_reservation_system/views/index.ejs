@@ -31,12 +31,40 @@
 	</header>
 
 	<div class="container">
-		<div class="jumbotron text-center">
+		<div class="jumbotron text-center" style="padding-top: 24px; padding-bottom: 24px">
 			<h1><span class="fa fa-plane"></span> Flight Reservation System</h1>
+			<h3>Login to book a flight:</h3>
 
 			<a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Login</a>
 			<a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Signup</a>
+			<h3>All flights are free!!!</h3>
 		</div>
+	</div>
+	<div class="container">
+
+		<table class="table table-responsive" id="table" style="background-color: black; color: white">
+			<caption style="background-color: black"><h2>Upcoming Flights</h2></caption>
+  		<thead>
+  			<tr>
+  				<th>Flight</th>
+  				<th>From</th>
+  				<th>Departure</th>
+  				<th>To</th>
+  				<th>Arrival</th>
+  			</tr>
+  		</thead>
+  		<tbody>
+				<% for (var i = 0; i < upcomingFlights.length; i++) { %>
+  				<tr>
+  					<td><%= upcomingFlights[i].AirlineCode + ' ' + upcomingFlights[i].FlightNum %></td>
+  					<td><%= upcomingFlights[i].City + ', ' + upcomingFlights[i].State + ' (' + upcomingFlights[i].Origin + ')'%></td>
+  					<td><%= upcomingFlights[i].DepartTime %></td>
+  					<td><%= upcomingFlights[i].destCity + ', ' + upcomingFlights[i].destState + ' (' + upcomingFlights[i].Destination + ')' %></td>
+  					<td><%= upcomingFlights[i].ArrivalTime %></td>
+  				</tr>
+  			<% } %>
+  		</tbody>
+  	</table>
 	</div>
 </body>
 
