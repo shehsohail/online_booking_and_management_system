@@ -45,7 +45,9 @@ require('./app/airportData.js')(app);
 require('./app/passportRoutes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 require('./app/index.js')(app);
 require('./app/search.js')(app);
-require('./app/order.js')(app);
+require('./app/passengers.js')(app);
+require('./app/seating.js')(app);
+
 // launch ======================================================================
 app.listen(port);
 console.log(`Server on port ${port}`);

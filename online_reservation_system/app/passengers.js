@@ -2,7 +2,7 @@ const dbconfig = require('../config/database');
 const mysql = require('mysql');
 
 module.exports = (app) => {
-  app.get('/order', isLoggedIn, (req, res) => {
+  app.get('/passengers', (req, res) => {
       // render the page and pass in any flash data if it exists
       if (typeof app.locals.flightResult == 'undefined') {
         res.redirect('/search');
@@ -11,12 +11,12 @@ module.exports = (app) => {
       }
   });
 
-  app.post('/order', isLoggedIn, (req, res) => {
+  app.post('/passengers', (req, res) => {
 
     console.log(req.body.optradio);
     if (typeof app.locals.flightResult == 'undefined') { res.redirect('/search');}
     console.log(app.locals.flightResult[req.body.optradio]);
-    res.render('order.ejs', {flight: app.locals.flightResult[req.body.optradio],
+    res.render('passengers.ejs', {flight: app.locals.flightResult[req.body.optradio],
                               passengers: app.locals.passengers,
                               classSelected: app.locals.class});
   });

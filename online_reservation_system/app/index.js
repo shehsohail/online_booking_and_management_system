@@ -6,8 +6,8 @@ module.exports = (app) => {
   // Homepage
   app.get('/', (req, res) => {
     var date= moment();
-    var dateNow = '2018-04-01';//date.format('YYYY-MM-DD');
-    var timeNow = '2100';//date.format('HHmm');
+    var dateNow = date.format('YYYY-MM-DD');
+    var timeNow = date.format('HHmm');
     const db = mysql.createConnection(dbconfig.connection);
     db.query(`USE ${dbconfig.database};`);
     var q = ['SELECT AirlineCode, FlightNum, o.City, o.State, Origin, DepartTime, ',

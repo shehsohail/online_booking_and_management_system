@@ -45,28 +45,6 @@ module.exports = (app, passport) => {
         });
     });
 
-    // Seating
-    app.get('/seating', (req, res) => {
-    // render the page and pass in any flash data if it exists
-    res.render('seating.ejs');
-
-    //connect to the database
-    const db = mysql.createConnection(dbconfig.connection);
-    db.query(`USE ${dbconfig.database};`);
-    var qu = 'SELECT SeatNum FROM Seats WHERE SeatAvailability=0'
-    db.query(qu,function(error,rows,fields) {
-        if (error) return console.log(error);
-        if (!rows.length) {
-              console.log("All seats are available.")
-              } else {
-                console.log(rows);
-              }
-      });
-
-    db.close
-});
-
-
     // =====================================
     // LOGOUT ==============================
     // =====================================
