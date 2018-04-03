@@ -7,7 +7,7 @@ module.exports = (app) => {
       if (typeof app.locals.flightResult == 'undefined') {
         res.redirect('/search');
       } else {
-        res.render('order.ejs');
+        res.render('passengers.ejs');
       }
   });
 
@@ -15,8 +15,9 @@ module.exports = (app) => {
 
     console.log(req.body.optradio);
     if (typeof app.locals.flightResult == 'undefined') { res.redirect('/search');}
-    console.log(app.locals.flightResult[req.body.optradio]);
-    res.render('passengers.ejs', {flight: app.locals.flightResult[req.body.optradio],
+    app.locals.selectedFlight = app.locals.flightResult[req.body.optradio];
+    console.log(app.locals.selectedFlight);
+    res.render('passengers.ejs', {flight: app.locals.selectedFlight,
                               passengers: app.locals.passengers,
                               classSelected: app.locals.class});
   });

@@ -47,6 +47,8 @@ require('./app/index.js')(app);
 require('./app/search.js')(app);
 require('./app/passengers.js')(app);
 require('./app/seating.js')(app);
+require('./app/account.js')(app);
+
 
 // launch ======================================================================
 app.listen(port);
