@@ -11,7 +11,7 @@ module.exports = (app) => {
     console.log(req.body);
     app.locals.passengerInfo = req.body;
     console.log(req.body.firstname[0]);
-    console.log(app.locals.passengerInfo.firstname[0])
+    console.log(app.locals.passengerInfo.firstname[0]);
     console.log(app.locals.passengers);
     res.render('seating.ejs');
 
