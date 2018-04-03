@@ -38,13 +38,6 @@ module.exports = (app, passport) => {
         failureFlash: true, // allow flash messages
     }));
 
-    // Account
-    app.get('/account', isLoggedIn, ({ user }, res) => {
-        res.render('account.ejs', {
-            user, // get the user out of session and pass to template
-        });
-    });
-
     // =====================================
     // LOGOUT ==============================
     // =====================================
