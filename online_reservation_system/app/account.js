@@ -5,18 +5,26 @@ const mysql = require('mysql');
 module.exports = (app) => {
   app.get('/account', isLoggedIn, ({ user }, res) => {
     console.log("account");
-    var nextFlight;
-    var orderHistory;
 
     const db = mysql.createConnection(dbconfig.connection);
     db.query(`USE ${dbconfig.database};`);
-    var q = 'SELECT * FROM Orders WHERE Customer_Username = ?'
+    var q = ['SELECT o.OrderID, o.OrderStatus, o.OrderDate, t.TicketNum, p.FirstName, p.LastName, ',
+              'p.Gender, f.AirlineCode, f.FlightNum, f.FlightDate, f.Origin, f.DepartTime, f.Destination, f.ArrivalTime, ',
+              's.SeatNum FROM Orders o ',
+              'LEFT JOIN Tickets t ON o.OrderID = t.OrderID ',
+              'LEFT JOIN Passengers p ON t.PassengerID = p.PassengerID ',
+              'LEFT JOIN Seats s ON s.TicketNum = t.TicketNum ',
+              'LEFT JOIN Flights f ON t.AirlineCode = f.AirlineCode AND t.FlightNum = f.FlightNum ',
+              'AND t.FlightDate = f.FlightDate AND t.Origin = f.Origin ',
+              'WHERE Customer_Username = ? ORDER BY o.OrderDate DESC'].join('');
     db.query(q, [user.Username],
       function(error, rows, fields) {
         if (error) return console.log(error);
         if (rows.length) {
-          console.log(rows);
+          console.log(rows[0]['OrderID']);
           res.render('account.ejs', { user, orderHistory: rows});
+        } else {
+          res.render('account.ejs', {user});
         }
       });
     db.close;

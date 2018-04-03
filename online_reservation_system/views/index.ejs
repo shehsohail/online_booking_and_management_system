@@ -33,10 +33,15 @@
 	<div class="container">
 		<div class="jumbotron text-center" style="padding-top: 24px; padding-bottom: 24px">
 			<h1><span class="fa fa-plane"></span> Flight Reservation System</h1>
-			<h3>Login to book a flight:</h3>
 
-			<a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Login</a>
-			<a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Signup</a>
+			<% console.log(userLoggedIn); if (userLoggedIn === true) { %>
+				<h3>Search for a flight:</h3>
+				<a href="/search" class="btn btn-default">Search for a Flight</a>
+			<% } else { %>
+				<h3>Login to book a flight:</h3>
+				<a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Login</a>
+				<a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Signup</a>
+			<% } %>
 			<h3>All flights are free!!!</h3>
 		</div>
 	</div>

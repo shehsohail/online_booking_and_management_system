@@ -22,7 +22,11 @@ module.exports = (app) => {
         if (!rows.length) {
           console.log("No flights returned.")
         } else {
-          res.render('index.ejs', { upcomingFlights: rows });
+          var userLoggedIn = false;
+          if (req.isAuthenticated) {
+            userLoggedIn = true;
+          }
+          res.render('index.ejs', { upcomingFlights: rows, userLoggedIn });
       }
     });
     db.close;

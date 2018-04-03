@@ -5,9 +5,16 @@
 <head>
 	<title>Flight Reservation System</title>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+	<!-- load bootstrap css -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	<link rel="stylesheet" type="text/css" href="/css/mystyle.css">
+	<!-- load fontawesome -->
 
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -28,13 +35,15 @@
 	</header>
 	<div class="container well">
 
-		<div class="page-header text-center">
-			<h1><span></span> Account</h1>
-			<a href="/logout" class="btn btn-default btn-sm">Logout</a>
-		</div>
+
 
 		<div class="row">
-
+			<div class="col-xs-8">
+			<div class="page-header text-center">
+				<h1><span></span> Account</h1>
+				<a href="/logout" class="btn btn-default btn-sm">Logout</a>
+			</div>
+		</div>
 			<div class="col-xs-4">
 				<div class="well">
 					<h3><span class="fa fa-user"></span> User Info</h3>
@@ -48,33 +57,92 @@
 
 				</div>
 			</div>
-			<div class="col-xs-8">
-			<div class="well">
-				<h3>Order History</h3>
-				<% if (typeof orderHistory != 'undefined') { %>
-					<table class="table table-responsive " id="table">
-						<thead>
-							<tr>
-								<th>Order ID</th>
-								<th>Order Status</th>
-								<th>Order Date</th>
-							</tr>
-						</thead>
-						<tbody>
-							<% orderHistory.forEach(function (order) { %>
-								<tr>
-									<td><%= order.OrderID %></td>
-									<td><%= order.OrderStatus %></td>
-									<td><%= order.OrderDate %></td>
-								</tr>
-							<% }) %>
-						</tbody>
-					</table>
-				<% } %>
-			</div>
-		</div>
 	</div>
 	</div>
+	<div class="container well" style="background-color: rgba(100, 100, 100, 0.8)">
+		<h1>Order History</h1>
+		<hr>
+	<% if (typeof orderHistory != 'undefined') {
+		var prevOrder = null; %>
+		<ul class="nav nav-tabs">
+			<% for (var i = 0; i < orderHistory.length; i++) {
+				if (orderHistory[i]['OrderID'] === prevOrder) { continue; }
+				if (i !== 0) {%>
+		  		<li><a data-toggle="tab" href="#<%= orderHistory[i]['OrderID'] %>"><%= orderHistory[i]['OrderID'] %></a></li>
+			<% } else { %>
+					<li class="active"><a data-toggle="tab" href="#<%= orderHistory[0]['OrderID'] %>"><%= orderHistory[0]['OrderID'] %></a></li>
+			<% }
+				prevOrder = orderHistory[i]['OrderID']
+			} %>
+		</ul>
+
+		<div class="tab-content">
+			<% var prevOrder = null;
+				var orderStart = 0; %>
+			<% for (var i = 0; i < orderHistory.length; i++) {
+				if (orderHistory[i]['OrderID'] === prevOrder) { continue; }
+				orderStart = i;
+				if (i !== 0) { %>
+					<div id="<%= orderHistory[i]['OrderID'] %>" class="tab-pane fade">
+				<% } else { %>
+				  <div id="<%= orderHistory[0]['OrderID'] %>" class="tab-pane fade in active">
+				<% }
+				var order = orderHistory[i]['OrderID'] %>
+			    <h3>Order: <%= order %></h3>
+					<div class='row'>
+				    <div class='col-xs-2'>Order Date: <%= orderHistory[i]['OrderDate'] %></div>
+						<div class='col-xs-2'>Order Status: <%= orderHistory[i]['OrderStatus'] %></div>
+					</div>
+					<br>
+					<div class='row'>
+				    <div class='col-xs-2'>Flight: <%= orderHistory[i]['AirlineCode'] + ' ' + orderHistory[i]['FlightNum'] %></div>
+						<div class='col-xs-2'>Flight Date: <%= orderHistory[i]['FlightDate'] %></div>
+					</div>
+					<br>
+					<div class='row'>
+				    <div class='col-xs-2'>Origin: <%= orderHistory[i]['Origin'] %></div>
+						<div class='col-xs-2'>Departure Time: <%= orderHistory[i]['DepartTime'] %></div>
+						<div class='col-xs-2'>Destination: <%= orderHistory[i]['Destination'] %></div>
+						<div class='col-xs-2'>Arrival Time: <%= orderHistory[i]['ArrivalTime'] %></div>
+					</div>
+					<br>
+					<table class="table table-responsive" id="table">
+						<caption style="background-color: rgba(100, 100, 100, 0.8)"><h4>Passengers</h4></caption>
+			  		<thead>
+			  			<tr>
+			  				<th>First Name</th>
+			  				<th>Last Name</th>
+			  				<th>Gender</th>
+			  				<th>Seat</th>
+			  			</tr>
+			  		</thead>
+			  		<tbody>
+							<% var j = orderStart;
+							 		var curOrder = orderHistory[orderStart]['OrderID'];
+									while (curOrder === order) { %>
+			  				<tr>
+			  					<td><%= orderHistory[j]['FirstName'] %></td>
+			  					<td><%= orderHistory[j]['LastName'] %></td>
+			  					<td><%= orderHistory[j]['Gender'] %></td>
+									<td><%= orderHistory[j]['SeatNum'] %></td>
+			  				</tr>
+								<% j++;
+									if (j != orderHistory.length)
+										{
+											curOrder = orderHistory[j]['OrderID']
+										} else { break; }
+								} %>
+			  		</tbody>
+			  	</table>
+					<% prevOrder = orderHistory[i]['OrderID']; %>
+				</div>
+					<% } %>
+			  </div>
+	</div>
+	<% } else { %>
+		<h3 style="margin-top: 0px">No orders to show.</h3>
+		<a href="/search" style="color: #e6e6e6">Search for a Flight to make an order!</a>
+	<% } %>
 </body>
 
 </html>
