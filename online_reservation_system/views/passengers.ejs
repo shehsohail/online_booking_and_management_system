@@ -47,7 +47,6 @@
   <% if (typeof flight != 'undefined') { console.log(flight); %>
     <div class="container" style="background-color: #f2f2f3; color: black">
   		<h3 style="text-align: center">Selected Flight</h3>
-
       <table class="table table-responsive table-hover" id="table">
     		<thead>
     			<tr>
@@ -121,12 +120,12 @@
 				  <div class="input-group">
 				    <span class="input-group-addon">Seat #:</span>
 				    <select class="form-control" style="max-width: 105px" placeholder="Seat Number" name="SeatNum">
-				      <% for (var i = 1; i < seat.length; i++) {
+				      <% for (var i = 1; i <= 20; i++) {
 				        if(seat[i]==0){ %>
-									<option value="<%= i %>"> <%= i%>
+									<option value="<%= i %>"> <%= i %>
 									</option>
 									<% } else { %>
-										<option value="<%= i %>" disabled="disabled"> <%= i%></option>
+										<option value="<%= i %>" disabled="disabled"> <%= i %></option>
 				      <% }} %>
 				    </select>
 				  </div>

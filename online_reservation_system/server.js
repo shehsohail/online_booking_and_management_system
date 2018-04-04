@@ -40,7 +40,6 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 app.use(express.static('public'));
 
 require('./app/airportData.js')(app);
-
 // routes ======================================================================
 require('./app/passportRoutes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 require('./app/index.js')(app);
