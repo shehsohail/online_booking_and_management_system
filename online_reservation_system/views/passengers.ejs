@@ -99,7 +99,7 @@
       </div>
       <br>
       <div class="row">
-        <div class="col-xs-6" class="div-inline">
+        <div class="col-xs-6">
           <div class="input-group">
             <span class="input-group-addon">Gender:</span>
             <select class="form-control" style="max-width: 100px" name="gender" required>
@@ -113,6 +113,23 @@
 						<span class="input-group-addon">Date of Birth</span>
 						<input class="form-control" style="max-width: 125px" id="date<%=i%>" name="date" placeholder="YYYY-MM-DD" type="text" required>
 					</div>
+				</div>
+				<br>
+				<br>
+				<br>
+				<div class="col-xs-6" class="div-inline">
+				  <div class="input-group">
+				    <span class="input-group-addon">Seat #:</span>
+				    <select class="form-control" style="max-width: 105px" placeholder="Seat Number" name="SeatNum">
+				      <% for (var i = 1; i < seat.length; i++) {
+				        if(seat[i]==0){ %>
+									<option value="<%= i %>"> <%= i%>
+									</option>
+									<% } else { %>
+										<option value="<%= i %>" disabled="disabled"> <%= i%></option>
+				      <% }} %>
+				    </select>
+				  </div>
 				</div>
       </div>
       <br>
