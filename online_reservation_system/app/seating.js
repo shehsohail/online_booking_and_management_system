@@ -4,7 +4,7 @@ const mysql = require('mysql');
 module.exports = (app) => {
   // Seating
   app.get('/seating', (req, res) => {
-      res.render('seating.ejs');
+      res.render('seatingTest.ejs');
   });
 
   app.post('/seating', (req, res) => {
@@ -13,7 +13,7 @@ module.exports = (app) => {
     console.log(req.body.firstname[0]);
     console.log(app.locals.passengerInfo.firstname[0]);
     console.log(app.locals.passengers);
-    res.render('seating.ejs');
+    res.render('seatingTest.ejs', {passengerInfo: req.body, passengers: app.locals.passengers});
 
 
   });
