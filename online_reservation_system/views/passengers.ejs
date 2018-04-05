@@ -119,12 +119,14 @@
 				<div class="col-xs-4" class="div-inline">
 				  <div class="input-group">
 				    <span class="input-group-addon">Seat #:</span>
-				    <select class="form-control" style="max-width: 105px" placeholder="Seat Number" name="SeatNum">
+				    <select class="form-control" style="max-width: 105px" placeholder="Seat Number" id="SeatNum<%=i%>" name="SeatNum">
 				      <% for (var j = 1; j <= 20; j++) {
 				        if(seat[j]==0){ %>
-									<option value="<%= j %>"> <%= j %>
-									</option>
+									<% if (j == i) { %>
+										<option value="<%= j %>" selected="selected"> <%= j %></option>
 									<% } else { %>
+										<option value="<%= j %>"> <%= j %></option>
+									<% }} else { %>
 										<option value="<%= j %>" disabled="disabled"> <%= j %></option>
 				      <% }} %>
 				    </select>

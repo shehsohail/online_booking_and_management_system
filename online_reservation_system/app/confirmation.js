@@ -7,7 +7,7 @@ module.exports = (app) => {
       res.redirect('search');
   });
 
-  app.post('/confirmation', (req, res) => {
+  app.post('/confirmation', isLoggedIn, (req, res) => {
     if (app.locals.passengers == 1) {
       app.locals.passengerInfo = {
         firstname: [req.body.firstname],
@@ -16,7 +16,13 @@ module.exports = (app) => {
         date: [req.body.date],
         SeatNum: [req.body.SeatNum]}
     } else {
-      app.locals.passengerInfo = req.body;
+      console.log(req.body.SeatNum);
+      console.log(duplicatesInArray(req.body.SeatNum));
+      if (duplicatesInArray(req.body.SeatNum)) {
+        res.redirect('/search/?param1=true');
+      } else {
+        app.locals.passengerInfo = req.body;
+      }
     }
     if (app.locals.selectedFlight === 'undefined') {
       res.redirect('search.ejs');
@@ -28,10 +34,9 @@ module.exports = (app) => {
       });
   });
 }
-
-
-
-
+function duplicatesInArray(a) {
+  return a.length !== new Set(a).size;
+}
 
 function isLoggedIn(req, res, next) {
 

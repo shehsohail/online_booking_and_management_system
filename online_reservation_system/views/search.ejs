@@ -45,7 +45,7 @@
 	</header>
 	<div class="container">
 		<h3 style="text-align: center">Search Flights</h3>
-		<form action="search" method="post">
+		<form action="/search" method="post">
 			<div class="row">
 				<br>
 				<div class="col-xs-4">
@@ -110,6 +110,9 @@
 		<br>
 		<% if (typeof message != 'undefined') { %>
 				<div class="alert alert-danger text-center"><%= message %></div>
+		<% } %>
+		<% if (typeof duplicatesFound != 'undefined' && duplicatesFound) { %>
+				<div class="alert alert-danger text-center">Please do not select duplicate seats.</div>
 		<% } %>
 	</div>
 

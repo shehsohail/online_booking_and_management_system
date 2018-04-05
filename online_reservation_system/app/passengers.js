@@ -17,6 +17,7 @@ module.exports = (app) => {
     if (typeof app.locals.flightResult == 'undefined') { res.redirect('/search');}
     app.locals.selectedFlight = app.locals.flightResult[req.body.optradio];
 
+    // find if there are existing seats for flight selected
     var seatingArray=new Array(21);
     seatingArray.fill("0",0,21);
     const db = mysql.createConnection(dbconfig.connection);

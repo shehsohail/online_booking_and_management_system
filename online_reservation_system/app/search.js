@@ -7,7 +7,11 @@ module.exports = (app, passport) => {
     // Search
     app.get('/search', isLoggedIn, (req, res) => {
         // render the page and pass in any flash data if it exists
-        res.render('search.ejs', {airportData: app.locals.airportData});
+        var duplicateSeats = false;
+        if (typeof req.query.param1 != 'undefined') {
+          duplicateSeats = true;
+        }
+        res.render('search.ejs', {airportData: app.locals.airportData, duplicatesFound: duplicateSeats});
     });
 
     app.post('/search', isLoggedIn, (req, res) => {
