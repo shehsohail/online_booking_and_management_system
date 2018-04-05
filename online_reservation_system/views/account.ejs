@@ -26,7 +26,6 @@
 				</div>
 				<ul class="nav navbar-nav">
 					<li><a href="/search">Search Flights</a></li>
-					<li><a href="/seating">Reserve Seat</a></li>
 					<li><a href="/login">Login</a></li>
 					<li><a href="/signup">Sign Up</a></li>
 					<li><a href="/account">Account</a></li? </ul>
@@ -110,6 +109,8 @@
 						<caption style="background-color: rgba(100, 100, 100, 0.8)"><h4>Passengers</h4></caption>
 			  		<thead>
 			  			<tr>
+								<th>Ticket ID</th>
+								<th>Passenger ID</th>
 			  				<th>First Name</th>
 			  				<th>Last Name</th>
 			  				<th>Gender</th>
@@ -121,6 +122,8 @@
 							 		var curOrder = orderHistory[orderStart]['OrderID'];
 									while (curOrder === order) { %>
 			  				<tr>
+									<td><%= orderHistory[j]['TicketNum'] %></td>
+									<td><%= orderHistory[j]['PassengerID'] %></td>
 			  					<td><%= orderHistory[j]['FirstName'] %></td>
 			  					<td><%= orderHistory[j]['LastName'] %></td>
 			  					<td><%= orderHistory[j]['Gender'] %></td>

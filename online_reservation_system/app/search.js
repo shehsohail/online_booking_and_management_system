@@ -5,12 +5,12 @@ const mysql = require('mysql');
 
 module.exports = (app, passport) => {
     // Search
-    app.get('/search', (req, res) => {
+    app.get('/search', isLoggedIn, (req, res) => {
         // render the page and pass in any flash data if it exists
         res.render('search.ejs', {airportData: app.locals.airportData});
     });
 
-    app.post('/search', (req, res) => {
+    app.post('/search', isLoggedIn, (req, res) => {
       console.log(req.body);
       var flightRequest = {
         Origin: req.body.Origin,
@@ -20,7 +20,7 @@ module.exports = (app, passport) => {
 
       app.locals.passengers = req.body.Passengers;
       app.locals.class = req.body.Class;
-      
+
       const db = mysql.createConnection(dbconfig.connection);
       db.query(`USE ${dbconfig.database};`);
       var q = 'SELECT * FROM Flights WHERE Origin = ? AND Destination = ? AND FlightDate = ? ORDER BY DepartTime'

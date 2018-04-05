@@ -23,7 +23,8 @@ module.exports = (app) => {
           console.log("No flights returned.")
         } else {
           var userLoggedIn = false;
-          if (req.isAuthenticated) {
+          if (req.isAuthenticated()) {
+            console.log(req.isAuthenticated());
             userLoggedIn = true;
           }
           res.render('index.ejs', { upcomingFlights: rows, userLoggedIn });
@@ -31,5 +32,4 @@ module.exports = (app) => {
     });
     db.close;
   })
-
 }

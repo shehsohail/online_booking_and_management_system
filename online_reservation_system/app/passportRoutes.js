@@ -11,7 +11,7 @@ module.exports = (app, passport) => {
 
     // process the login form
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect: '/account', // redirect to the secure account section
+        successRedirect: '/', // redirect to the secure account section
         failureRedirect: '/login', // redirect back to the signup page if there is an error
         failureFlash: true, // allow flash messages
     }), ({ body, session }, res) => {

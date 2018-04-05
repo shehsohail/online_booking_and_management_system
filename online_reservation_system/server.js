@@ -45,7 +45,7 @@ require('./app/passportRoutes.js')(app, passport); // load our routes and pass i
 require('./app/index.js')(app);
 require('./app/search.js')(app);
 require('./app/passengers.js')(app);
-require('./app/seating.js')(app);
+require('./app/submitted.js')(app);
 require('./app/account.js')(app);
 require('./app/confirmation.js')(app);
 
