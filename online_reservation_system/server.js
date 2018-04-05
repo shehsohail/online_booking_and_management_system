@@ -47,6 +47,8 @@ require('./app/search.js')(app);
 require('./app/passengers.js')(app);
 require('./app/seating.js')(app);
 require('./app/account.js')(app);
+require('./app/confirmation.js')(app);
+
 
 
 // launch ======================================================================
