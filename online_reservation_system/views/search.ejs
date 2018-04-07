@@ -93,16 +93,6 @@
 						</select>
 					</div>
 				</div>
-				<div class="col-xs-4" class="div-inline">
-					<div class="input-group">
-						<span class="input-group-addon">Preferred Class:</span>
-						<select class="form-control" style="max-width: 150px" name="Class">
-						  							<option value="Economy/Coach">Economy/Coach</option>
-						  							<option value="Business">Business</option>
-						  							<option value="First class">First Class</option>
-							</select>
-					</div>
-				</div>
 			</div>
 			<br>
 			<button type="submit" class="btn btn-primary">Find Flights</button>
@@ -129,6 +119,7 @@
 					<th>Departure Time</th>
 					<th>Destination</th>
 					<th>Arrival Time</th>
+					<th>Price</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -146,6 +137,7 @@
 						<td><%= flight.DepartTime %></td>
 						<td><%= flight.Destination %></td>
 						<td><%= flight.ArrivalTime %></td>
+						<td><%= '$' + flight.Price %></td>
 					</tr>
 				<% i++; })} %>
 			</tbody>

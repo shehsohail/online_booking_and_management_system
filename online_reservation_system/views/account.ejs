@@ -115,6 +115,7 @@
 			  				<th>Last Name</th>
 			  				<th>Gender</th>
 			  				<th>Seat</th>
+								<th>Price</th>
 			  			</tr>
 			  		</thead>
 			  		<tbody>
@@ -128,6 +129,7 @@
 			  					<td><%= orderHistory[j]['LastName'] %></td>
 			  					<td><%= orderHistory[j]['Gender'] %></td>
 									<td><%= orderHistory[j]['SeatNum'] %></td>
+									<td><%= '$'+orderHistory[j]['Price'] %></td>
 			  				</tr>
 								<% j++;
 									if (j != orderHistory.length)

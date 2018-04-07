@@ -27,7 +27,10 @@ module.exports = (app, passport) => {
 
       const db = mysql.createConnection(dbconfig.connection);
       db.query(`USE ${dbconfig.database};`);
-      var q = 'SELECT * FROM Flights WHERE Origin = ? AND Destination = ? AND FlightDate = ? ORDER BY DepartTime'
+      var q = ['SELECT * FROM Flights f ',
+                'LEFT JOIN Pricing as p ON p.AirlineCode = f.AirlineCode AND p.City = f.Origin ',
+                'WHERE f.Origin = ? AND f.Destination = ? AND f.FlightDate = ? ',
+                'ORDER BY f.DepartTime'].join('');
       db.query(q, [flightRequest.Origin, flightRequest.Destination, flightRequest.DepartDate],
         function(error, rows, fields) {
           if (error) return console.log(error);
