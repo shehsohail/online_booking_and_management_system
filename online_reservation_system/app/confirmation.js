@@ -29,8 +29,7 @@ module.exports = (app) => {
     }
     res.render('confirmation.ejs', {flight: app.locals.selectedFlight,
       passengers: app.locals.passengers,
-      passengersInfo: app.locals.passengerInfo,
-      classSelected: app.locals.class,
+      passengersInfo: app.locals.passengerInfo
       });
   });
 }

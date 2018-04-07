@@ -31,7 +31,6 @@ module.exports = (app) => {
         }
         res.render('passengers.ejs', {flight: app.locals.selectedFlight,
           passengers: app.locals.passengers,
-          classSelected: app.locals.class,
           seat: seatingArray});
       });
       db.close;

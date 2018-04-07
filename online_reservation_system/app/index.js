@@ -24,7 +24,6 @@ module.exports = (app) => {
         } else {
           var userLoggedIn = false;
           if (req.isAuthenticated()) {
-            console.log(req.isAuthenticated());
             userLoggedIn = true;
           }
           res.render('index.ejs', { upcomingFlights: rows, userLoggedIn });

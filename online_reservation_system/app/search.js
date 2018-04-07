@@ -15,7 +15,6 @@ module.exports = (app, passport) => {
     });
 
     app.post('/search', isLoggedIn, (req, res) => {
-      console.log(req.body);
       var flightRequest = {
         Origin: req.body.Origin,
         Destination: req.body.Destination,
@@ -23,7 +22,6 @@ module.exports = (app, passport) => {
       };
 
       app.locals.passengers = req.body.Passengers;
-      app.locals.class = req.body.Class;
 
       const db = mysql.createConnection(dbconfig.connection);
       db.query(`USE ${dbconfig.database};`);
