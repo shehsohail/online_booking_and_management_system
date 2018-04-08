@@ -14,7 +14,7 @@ module.exports = (app) => {
               'd.City as destCity, d.State as destState, f.Destination, f.ArrivalTime, p.Price FROM Flights as f ',
               'LEFT JOIN Airports as o ON f.Origin = o.Airport_Code ',
               'LEFT JOIN Airports as d ON f.Destination = d.Airport_Code ',
-              'LEFT JOIN Pricing as p ON p.AirlineCode = f.AirlineCode AND p.City = f.Origin ',
+              'LEFT JOIN Pricing as p ON p.AirlineCode = f.AirlineCode AND p.AirportCode = f.Origin ',
               'LEFT JOIN Airlines a ON f.AirlineCode = a.AirlineCode ',
               'WHERE FlightDate = ? AND f.DepartTime >= ? ',
               'ORDER BY f.DepartTime LIMIT 10;'].join('');
