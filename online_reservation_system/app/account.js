@@ -28,7 +28,42 @@ module.exports = (app) => {
       });
     db.close;
   });
-}
+
+  app.post('/account', isLoggedIn, (req, res) => {
+    if (typeof req.body.optradio != 'undefined') {
+      const db = mysql.createConnection(dbconfig.connection);
+      db.query(`USE ${dbconfig.database};`);
+      var q = 'DELETE FROM Tickets WHERE TicketNum = ?';
+      db.query(q, req.body.optradio,
+        function(error, rows, fields) {
+          if (error) return console.log(error);
+          else {
+            q = ['SELECT * FROM Orders LEFT JOIN Tickets ON Orders.OrderID = Tickets.OrderID ',
+                'WHERE Orders.OrderID = ?'].join('');
+            db.query(q, req.body.OrderID,
+              function(error, rows, fields) {
+                if (error) return console.log(error);
+                if (rows.length) {
+                  if(rows[0].TicketNum == null) {
+                    db.query('UPDATE Orders SET OrderStatus = "Cancelled" WHERE OrderID = ?', req.body.OrderID,
+                      function(error, rows) {
+                        if (error) return console.log(error);
+                        res.redirect('account');
+                      });
+                  } else {
+                    res.redirect('account');
+                  }
+                }
+              });
+              db.close;
+          }
+        });
+      db.close;
+    } else {
+      res.redirect('account');
+    }
+  });
+};
 
 function isLoggedIn(req, res, next) {
 

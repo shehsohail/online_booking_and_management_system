@@ -94,7 +94,13 @@
 					</div>
 					<br>
 					<div class='row'>
-				    <div class='col-xs-2'>Flight: <%= orderHistory[i]['AirlineCode'] + ' ' + orderHistory[i]['FlightNum'] %></div>
+						<% if (orderHistory[i]['TicketNum'] != null) { %>
+							<td>
+								<div class='col-xs-2'>Flight: <%= orderHistory[i]['AirlineCode'] + ' ' + orderHistory[i]['FlightNum'] %></div>
+							</td>
+						<% } else { %>
+							<div class='col-xs-2'>Flight: </div>
+						<% } %>
 						<div class='col-xs-2'>Flight Date: <%= orderHistory[i]['FlightDate'] %></div>
 					</div>
 					<br>
@@ -105,10 +111,12 @@
 						<div class='col-xs-2'>Arrival Time: <%= orderHistory[i]['ArrivalTime'] %></div>
 					</div>
 					<br>
+					<form action="account" method="post">
 					<table class="table table-responsive" id="table">
 						<caption style="background-color: rgba(100, 100, 100, 0.8)"><h4>Passengers</h4></caption>
 			  		<thead>
 			  			<tr>
+								<th></th>
 								<th>Ticket ID</th>
 								<th>Passenger ID</th>
 			  				<th>First Name</th>
@@ -123,13 +131,24 @@
 							 		var curOrder = orderHistory[orderStart]['OrderID'];
 									while (curOrder === order) { %>
 			  				<tr>
+									<% if (orderHistory[j]['TicketNum'] != null) { %>
+										<td>
+					            <input type="radio" id="<%= i %>" name="optradio" value="<%= orderHistory[j]['TicketNum'] %>"></label>
+										</td>
+									<% } else { %>
+										<td></td>
+									<% } %>
 									<td><%= orderHistory[j]['TicketNum'] %></td>
 									<td><%= orderHistory[j]['PassengerID'] %></td>
 			  					<td><%= orderHistory[j]['FirstName'] %></td>
 			  					<td><%= orderHistory[j]['LastName'] %></td>
 			  					<td><%= orderHistory[j]['Gender'] %></td>
 									<td><%= orderHistory[j]['SeatNum'] %></td>
-									<td><%= '$'+orderHistory[j]['Price'] %></td>
+									<% if (orderHistory[j]['TicketNum'] != null) { %>
+										<td><%= '$'+orderHistory[j]['Price'] %></td>
+									<% } else { %>
+										<td></td>
+									<% } %>
 			  				</tr>
 								<% j++;
 									if (j != orderHistory.length)
@@ -139,7 +158,10 @@
 								} %>
 			  		</tbody>
 			  	</table>
+					<input type=hidden name="OrderID" value="<%=orderHistory[i]['OrderID']%>"/>
+					<button type="submit" class="btn btn-danger">Cancel Ticket</button>
 					<% prevOrder = orderHistory[i]['OrderID']; %>
+				</form>
 				</div>
 					<% } %>
 			  </div>

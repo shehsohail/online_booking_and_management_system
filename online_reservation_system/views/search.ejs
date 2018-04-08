@@ -127,10 +127,8 @@
 					flights.forEach(function (flight) { %>
 					<tr>
 						<td>
-						<!-- <div class="radio"> -->
 	            <input type="radio" id="<%= i %>" name="optradio" value="<%= i %>"></label>
-	          <!-- </div> -->
-					</td>
+						</td>
 						<td><%= flight.AirlineCode + ' ' + flight.FlightNum %></td>
 						<td><%= flight.FlightDate %></td>
 						<td><%= flight.Origin %></td>
