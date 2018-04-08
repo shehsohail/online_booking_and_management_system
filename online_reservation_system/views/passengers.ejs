@@ -50,6 +50,7 @@
       <table class="table table-responsive table-hover" id="table">
     		<thead>
     			<tr>
+						<th>Airline</th>
             <th>Flight</th>
   					<th>Date</th>
   					<th>Origin</th>
@@ -62,6 +63,7 @@
     		</thead>
     		<tbody>
     				<tr>
+							<td><%= flight.AirlineName %></td>
     					<td><%= flight.AirlineCode + ' ' + flight.FlightNum %></td>
     					<td><%= flight.FlightDate %></td>
     					<td><%= flight.Origin %></td>

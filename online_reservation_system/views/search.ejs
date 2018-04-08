@@ -113,6 +113,7 @@
 			<thead>
 				<tr>
 					<th></th>
+					<th>Airline</th>
 					<th>Flight</th>
 					<th>Date</th>
 					<th>Origin</th>
@@ -129,6 +130,7 @@
 						<td>
 	            <input type="radio" id="<%= i %>" name="optradio" value="<%= i %>"></label>
 						</td>
+						<td><%= flight.AirlineName %></td>
 						<td><%= flight.AirlineCode + ' ' + flight.FlightNum %></td>
 						<td><%= flight.FlightDate %></td>
 						<td><%= flight.Origin %></td>

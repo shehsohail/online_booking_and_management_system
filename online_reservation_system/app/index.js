@@ -10,11 +10,12 @@ module.exports = (app) => {
     var timeNow = date.format('HHmm');
     const db = mysql.createConnection(dbconfig.connection);
     db.query(`USE ${dbconfig.database};`);
-    var q = ['SELECT f.AirlineCode, FlightNum, o.City, o.State, f.Origin, f.DepartTime, ',
+    var q = ['SELECT a.AirlineName, f.AirlineCode, FlightNum, o.City, o.State, f.Origin, f.DepartTime, ',
               'd.City as destCity, d.State as destState, f.Destination, f.ArrivalTime, p.Price FROM Flights as f ',
               'LEFT JOIN Airports as o ON f.Origin = o.Airport_Code ',
               'LEFT JOIN Airports as d ON f.Destination = d.Airport_Code ',
               'LEFT JOIN Pricing as p ON p.AirlineCode = f.AirlineCode AND p.City = f.Origin ',
+              'LEFT JOIN Airlines a ON f.AirlineCode = a.AirlineCode ',
               'WHERE FlightDate = ? AND f.DepartTime >= ? ',
               'ORDER BY f.DepartTime LIMIT 10;'].join('');
     db.query(q, [dateNow, timeNow],

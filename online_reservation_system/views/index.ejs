@@ -49,6 +49,7 @@
 			<caption style="background-color: rgba(100, 100, 100, 0.5)"><h2>Upcoming Flights</h2></caption>
   		<thead>
   			<tr>
+					<th>Airline</th>
   				<th>Flight</th>
   				<th>From</th>
   				<th>Departure</th>
@@ -60,6 +61,7 @@
   		<tbody>
 				<% for (var i = 0; i < upcomingFlights.length; i++) { %>
   				<tr>
+						<td><%= upcomingFlights[i].AirlineName %></td>
   					<td><%= upcomingFlights[i].AirlineCode + ' ' + upcomingFlights[i].FlightNum %></td>
   					<td><%= upcomingFlights[i].City + ', ' + upcomingFlights[i].State + ' (' + upcomingFlights[i].Origin + ')'%></td>
   					<td><%= upcomingFlights[i].DepartTime %></td>

@@ -27,6 +27,7 @@ module.exports = (app, passport) => {
       db.query(`USE ${dbconfig.database};`);
       var q = ['SELECT * FROM Flights f ',
                 'LEFT JOIN Pricing as p ON p.AirlineCode = f.AirlineCode AND p.City = f.Origin ',
+                'LEFT JOIN Airlines as a ON a.AirlineCode = f.AirlineCode ',
                 'WHERE f.Origin = ? AND f.Destination = ? AND f.FlightDate = ? ',
                 'ORDER BY f.DepartTime'].join('');
       db.query(q, [flightRequest.Origin, flightRequest.Destination, flightRequest.DepartDate],

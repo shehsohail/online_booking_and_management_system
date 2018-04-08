@@ -94,6 +94,7 @@
 					</div>
 					<br>
 					<div class='row'>
+						<div class='col-xs-2'>Airline: <%= orderHistory[i]['AirlineName'] %></div>
 						<% if (orderHistory[i]['TicketNum'] != null) { %>
 							<td>
 								<div class='col-xs-2'>Flight: <%= orderHistory[i]['AirlineCode'] + ' ' + orderHistory[i]['FlightNum'] %></div>
