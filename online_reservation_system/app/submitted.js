@@ -10,9 +10,6 @@ module.exports = (app) => {
   });
 
   app.post('/submitted', ({ user }, res) => {
-    // console.log(app.locals.passengers);
-    // console.log(app.locals.selectedFlight);
-    // console.log(app.locals.passengerInfo);
 
     const db = mysql.createConnection(dbconfig.connection);
     db.query(`USE ${dbconfig.database};`);

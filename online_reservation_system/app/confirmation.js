@@ -16,8 +16,6 @@ module.exports = (app) => {
         date: [req.body.date],
         SeatNum: [req.body.SeatNum]}
     } else {
-      console.log(req.body.SeatNum);
-      console.log(duplicatesInArray(req.body.SeatNum));
       if (duplicatesInArray(req.body.SeatNum)) {
         res.redirect('/search/?param1=true');
       } else {
